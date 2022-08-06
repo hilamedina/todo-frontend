@@ -2,40 +2,34 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { circularProgress } from '@material-ui/core';
-// import { CircularProgress } from '@mui/material/';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const OneTodo = () => {
-  const [todos, setTodos] = useState([]);
+  const { id } = useParams();
+  const [todoDetails, setTodoDetails] = useState();
 
   useEffect(() => {
-    axios.get('http://jsonplaceholder.typicode.com/todos').then((response) => {
-      const responseTodo = response.data;
-      setTodos(responseTodo);
-    });
+    axios
+      .get(`http://jsonplaceholder.typicode.com/todos/${id}`)
+      .then((response) => {
+        const responseTodo = response.data;
+        setTodoDetails(responseTodo);
+      });
   }, []);
-
-  console.log(todos);
-  const { id } = useParams();
+  const { id: todoId, userId, title, completed } = todoDetails || {};
   return (
-    <>
-      {todos ? (
+    <div>
+      {todoDetails ? (
         <div>
-          {todos.map((todo) => {
-            const { title, completed } = todos;
-            return (
-              <div>
-                <h4>{title}</h4>
-                <h4>{completed}</h4>
-              </div>
-            );
-          })}
+          <h1>{`todo title is ${title}`}</h1>
+          <h1>{`todo id is ${todoId}`}</h1>
+          <h1>{`todo userId is ${userId}`}</h1>
+          <h1>{`todo completed is ${completed}`}</h1>
         </div>
       ) : (
         <CircularProgress />
       )}
-    </>
+    </div>
   );
 };
 

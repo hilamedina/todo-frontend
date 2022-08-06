@@ -20,7 +20,7 @@ const Todos = () => {
   return (
     <>
       {todos ? (
-        <div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {todos.map((todo) => {
             return <TodoCard key={todo.id} todo={todo} />;
           })}
