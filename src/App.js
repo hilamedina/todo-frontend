@@ -7,13 +7,14 @@ import OneTodo from './OneTodo';
 function App() {
   return (
     <>
-      <div className="App"></div>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/todos" element={<Todos />} />
-          <Route exact path="/onetodo/:id" element={<OneTodo />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/todos" element={<Todos />} />
+            <Route exact path="/onetodo/:id" element={<OneTodo />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

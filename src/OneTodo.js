@@ -18,7 +18,25 @@ const OneTodo = () => {
 
   console.log(todos);
   const { id } = useParams();
-  return <>{todos ? <p>todo</p> : <CircularProgress />}</>;
+  return (
+    <>
+      {todos ? (
+        <div>
+          {todos.map((todo) => {
+            const { title, completed } = todos;
+            return (
+              <div>
+                <h4>{title}</h4>
+                <h4>{completed}</h4>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <CircularProgress />
+      )}
+    </>
+  );
 };
 
 export default OneTodo;
